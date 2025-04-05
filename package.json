@@ -51,7 +51,12 @@
           "mflow.server_host": {
             "type": "string",
             "default": "127.0.0.1",
-            "description": "The network address to listen on (default: 127.0.0.1 - localhost)"
+            "description": "The network address to listen on (default: 127.0.0.1 - localhost)."
+          },
+          "mflow.conda_env": {
+            "type": "string",
+            "default": "base",
+            "description": "The name of a conda environment where MLFlow is installed (default: base)."
           }
         }
       },
@@ -75,7 +80,7 @@
       "activitybar": [
         {
           "id": "mFlow",
-          "title": "MLFlow",
+          "title": "MFlow",
           "icon": "./resources/flow-logo.png"
         }
       ]
@@ -84,14 +89,14 @@
       "mFlow": [
         {
           "id": "mFlowOptions",
-          "name": "MLFlow Settings"
+          "name": "MFlow Settings"
         }
       ]
     },
     "viewsWelcome": [
       {
         "view": "mFlowOptions",
-        "contents": "In order to use git features, you can open a folder containing a git repository or clone from a URL.\n[Start Server](command:helloworld.helloWorld)\n[Clone Repository](command:git.clone)\nTo learn more about how to use git and source control in VS Code [read our docs](https://aka.ms/vscode-scm).",
+        "contents": "Start MLFlow server using existing settings.\n[Start Server](command:mflow.startServer)\nTo learn more about MFlow [read our docs](https://github.com/jesse-sealand/vscode-mflow).",
         "when": "true"
       }
     ]

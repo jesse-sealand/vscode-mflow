@@ -5,12 +5,10 @@ This extension is designed to help developers simplify the use of MLFlow with th
 ## Features
 
 - **Launch MLFlow Server from with VS Code**:
-
-\!\[feature X\]\(images/feature-x.png\)
+<img src="https://github.com/jesse-sealand/vscode-mflow/raw/main/resources/mflow-demo.gif" alt="demo" style="width:480px;"/>
 
 - **Customize and Save MLFLow Server settings**:
-
-\!\[feature X\]\(images/feature-x.png\)
+<img src="https://github.com/jesse-sealand/vscode-mflow/raw/main/resources/mflow-setings.png" alt="demo" style="width:480px;"/>
 
 ## Requirements
 
