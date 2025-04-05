@@ -1,16 +1,17 @@
-# mflow README
+# MLFlow extension for Visual Studio Code
 
-This is the README for your extension "mflow". After writing up a brief description, we recommend including the following sections.
+This extension is designed to help developers simplify the use of MLFlow with their development process.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
+- **Launch MLFlow Server from with VS Code**: 
 
 \!\[feature X\]\(images/feature-x.png\)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+
+- **Customize and Save MLFLow Server settings**:
+
+\!\[feature X\]\(images/feature-x.png\)
 
 ## Requirements
 
