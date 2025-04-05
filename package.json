@@ -8,12 +8,15 @@
   "version": "0.0.1",
   "publisher": "jesse-sealand",
   "engines": {
-    "vscode": "^1.99.0"
+    "vscode": "^1.98.2"
   },
   "categories": [
     "Data Science",
     "Machine Learning",
     "Notebooks"
+  ],
+  "activationEvents": [
+    "onCommand:mflow.startServer"
   ],
   "icon": "",
   "galleryBanner": {
@@ -28,90 +31,97 @@
   ],
   "preview": true,
   "pricing": "Free",
-  "activationEvents": [],
-  "main": "./out/extension.js",
+  "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "mflow.helloWorld",
-        "title": "Hello World"
+        "command": "mflow.startServer",
+        "title": "MFlow: Start Server"
       }
-    ]
-  },
-  "configuration": [
-    {
-      "title": "Server Settings",
-      "properties": {
-        "mlflow.server_port": {
-          "type": "number",
-          "default": 5000,
-          "description": "Preferred port number for the server (default 5000)."
-        },
-        "mlflow.server_host": {
-          "type": "string",
-          "default": "127.0.0.1",
-          "description": "The network address to listen on (default: 127.0.0.1 - localhost)"
+    ],
+    "configuration": [
+      {
+        "title": "Server Settings",
+        "properties": {
+          "mflow.server_port": {
+            "type": "number",
+            "default": 5000,
+            "description": "Preferred port number for the server (default 5000)."
+          },
+          "mflow.server_host": {
+            "type": "string",
+            "default": "127.0.0.1",
+            "description": "The network address to listen on (default: 127.0.0.1 - localhost)"
+          }
+        }
+      },
+      {
+        "title": "Repository Settings",
+        "properties": {
+          "mflow.artifact_uri": {
+            "type": "string",
+            "default": "./mlruns",
+            "description": "Path to local directory to store artifacts, for new experiments."
+          },
+          "mflow.backend_uri": {
+            "type": "string",
+            "default": "./mlruns",
+            "description": "URI to which to persist experiment and run data."
+          }
         }
       }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "mFlow",
+          "title": "MLFlow",
+          "icon": "./resources/flow-logo.png"
+        }
+      ]
     },
-    {
-      "title": "Repository Settings",
-      "properties": {
-        "mlflow.artifact_uri": {
-          "type": "string",
-          "default": "./mlruns",
-          "description": "Path to local directory to store artifacts, for new experiments."
-        },
-        "mlflow.backend_uri": {
-          "type": "string",
-          "default": "./mlruns",
-          "description": "URI to which to persist experiment and run data."
+    "views": {
+      "mFlow": [
+        {
+          "id": "mFlowOptions",
+          "name": "MLFlow Settings"
         }
-      }
-    }
-  ],
-  "viewsContainers": {
-    "activitybar": [
+      ]
+    },
+    "viewsWelcome": [
       {
-        "id": "ml-flow",
-        "title": "MLFlow",
-        "icon": "./resources/flow-logo.png"
+        "view": "mFlowOptions",
+        "contents": "In order to use git features, you can open a folder containing a git repository or clone from a URL.\n[Start Server](command:helloworld.helloWorld)\n[Clone Repository](command:git.clone)\nTo learn more about how to use git and source control in VS Code [read our docs](https://aka.ms/vscode-scm).",
+        "when": "true"
       }
     ]
   },
-  "views": {
-    "ml-flow": [
-      {
-        "id": "mlFlowOptions",
-        "name": "MLFlow Settings"
-      }
-    ]
-  },
-  "viewsWelcome": [
-    {
-      "view": "mlFlowOptions",
-      "contents": "In order to use git features, you can open a folder containing a git repository or clone from a URL.\n[Start Server](command:helloworld.helloWorld)\n[Clone Repository](command:git.clone)\nTo learn more about how to use git and source control in VS Code [read our docs](https://aka.ms/vscode-scm).",
-      "when": "true"
-    }
-  ],
   "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && npm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "npm run check-types && npm run lint && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "check-types": "tsc --noEmit",
     "lint": "eslint src",
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.99.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
+    "@types/vscode": "^1.98.2",
     "@typescript-eslint/eslint-plugin": "^8.28.0",
     "@typescript-eslint/parser": "^8.28.0",
-    "eslint": "^9.23.0",
-    "typescript": "^5.8.2",
     "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1"
+    "@vscode/test-electron": "^2.4.1",
+    "esbuild": "^0.25.2",
+    "eslint": "^9.23.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.8.2"
   },
   "repository": {
     "type": "git",
