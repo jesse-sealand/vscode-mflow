@@ -5,7 +5,7 @@
   "author": {
     "name": "Jesse Sealand"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "jesse-sealand",
   "engines": {
     "vscode": "^1.98.2"
@@ -18,7 +18,7 @@
   "activationEvents": [
     "onCommand:mflow.startServer"
   ],
-  "icon": "",
+  "icon": "./resources/mflow-icon.png",
   "galleryBanner": {
     "color": "#C80000",
     "theme": "dark"
@@ -81,7 +81,7 @@
         {
           "id": "mFlow",
           "title": "MFlow",
-          "icon": "./resources/flow-logo.png"
+          "icon": "./resources/mflow-logo.png"
         }
       ]
     },
