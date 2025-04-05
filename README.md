@@ -4,10 +4,9 @@ This extension is designed to help developers simplify the use of MLFlow with th
 
 ## Features
 
-- **Launch MLFlow Server from with VS Code**: 
+- **Launch MLFlow Server from with VS Code**:
 
 \!\[feature X\]\(images/feature-x.png\)
-
 
 - **Customize and Save MLFLow Server settings**:
 
@@ -19,54 +18,24 @@ If you have any requirements or dependencies, add a section describing those and
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+The following Visual Studio Code settings are available for the mflow extension. These can be set in workspace settings.
 
-For example:
+- `mflow.server_port`: Preferred port number for the server (default 5000).
+- `mflow.server_host`: The network address to listen on (default: 127.0.0.1 - localhost)
+- `mflow.artifact_uri`: Path to local directory to store artifacts, for new experiments.
+- `mflow.backend_uri`: URI to which to persist experiment and run data.
 
-This extension contributes the following settings:
+## Change Log
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+See the [change log] for a detailed list of changes in each version.
 
 ## Known Issues
 
 Calling out known issues can help limit users opening duplicate issues against your extension.
 
-## Release Notes
+## License
 
-Users appreciate release notes as you update your extension.
+This extension is [licensed under the MIT License].
 
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+[change log]: https://github.com/jesse-sealand/vscode-mflow/blob/main/CHANGELOG.md
+[licensed under the mit license]: https://github.com/jesse-sealand/vscode-mflow/blob/main/LICENSE.txt
