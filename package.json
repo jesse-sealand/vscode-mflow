@@ -1,14 +1,33 @@
 {
   "name": "mflow",
   "displayName": "MFlow",
-  "description": "",
+  "description": "MLFlow extension for Visual Studio Code.",
+  "author": {
+    "name": "Jesse Sealand"
+  },
   "version": "0.0.1",
+  "publisher": "jesse-sealand",
   "engines": {
     "vscode": "^1.99.0"
   },
   "categories": [
-    "Other"
+    "Data Science",
+    "Machine Learning",
+    "Notebooks"
   ],
+  "icon": "",
+  "galleryBanner": {
+    "color": "#C80000",
+    "theme": "dark"
+  },
+  "keywords": [
+    "MLFlow",
+    "Server",
+    "Tracking",
+    "Experiment"
+  ],
+  "preview": true,
+  "pricing": "Free",
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
@@ -19,6 +38,62 @@
       }
     ]
   },
+  "configuration": [
+    {
+      "title": "Server Settings",
+      "properties": {
+        "mlflow.server_port": {
+          "type": "number",
+          "default": 5000,
+          "description": "Preferred port number for the server (default 5000)."
+        },
+        "mlflow.server_host": {
+          "type": "string",
+          "default": "127.0.0.1",
+          "description": "The network address to listen on (default: 127.0.0.1 - localhost)"
+        }
+      }
+    },
+    {
+      "title": "Repository Settings",
+      "properties": {
+        "mlflow.artifact_uri": {
+          "type": "string",
+          "default": "./mlruns",
+          "description": "Path to local directory to store artifacts, for new experiments."
+        },
+        "mlflow.backend_uri": {
+          "type": "string",
+          "default": "./mlruns",
+          "description": "URI to which to persist experiment and run data."
+        }
+      }
+    }
+  ],
+  "viewsContainers": {
+    "activitybar": [
+      {
+        "id": "ml-flow",
+        "title": "MLFlow",
+        "icon": "./resources/flow-logo.png"
+      }
+    ]
+  },
+  "views": {
+    "ml-flow": [
+      {
+        "id": "mlFlowOptions",
+        "name": "MLFlow Settings"
+      }
+    ]
+  },
+  "viewsWelcome": [
+    {
+      "view": "mlFlowOptions",
+      "contents": "In order to use git features, you can open a folder containing a git repository or clone from a URL.\n[Start Server](command:helloworld.helloWorld)\n[Clone Repository](command:git.clone)\nTo learn more about how to use git and source control in VS Code [read our docs](https://aka.ms/vscode-scm).",
+      "when": "true"
+    }
+  ],
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
@@ -37,5 +112,10 @@
     "typescript": "^5.8.2",
     "@vscode/test-cli": "^0.0.10",
     "@vscode/test-electron": "^2.4.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jesse-sealand/vscode-mflow.git"
+  },
+  "homepage": "https://github.com/jesse-sealand/vscode-mflow/blob/main/README.md"
 }

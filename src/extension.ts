@@ -2,21 +2,59 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
+let terminal: vscode.Terminal;
+let command: string = '';
+let settingsConfig;
+let server_port: string = '';
+let server_host: string = '';
+let backend_store_uri: string = '';
+let artifact_store_uri: string = '';
+
+
+function startMLFlowServer() {
+
+	// Read settings from extension settings
+	settingsConfig = vscode.workspace.getConfiguration();
+
+	server_port = String(settingsConfig.get('mlflow.server_port', 0));
+	server_host = settingsConfig.get('mlflow.server_host','');
+	backend_store_uri = settingsConfig.get('mlflow.artifact_uri','');
+	artifact_store_uri = settingsConfig.get('mlflow.backend_uri','');
+
+	// Notifications
+	vscode.window.showInformationMessage(`Starting MLFlow server on port (${server_port})...`);
+
+	// Create new terminal and launch the server
+	terminal = vscode.window.createTerminal("mlflow-server");
+
+	// Activate python evironment where MlFlow is installed
+	command = "conda activate mlflow";
+	terminal.sendText(command);
+
+	// Start the MLFlow server
+	command = `mlflow ui --host ${server_host} --port ${server_port} --backend-store-uri ${backend_store_uri} --default-artifact-root ${artifact_store_uri}`;
+	terminal.sendText(command);
+
+	// Launch the Tracking UI inside VSCode
+	vscode.commands.executeCommand("simpleBrowser.show", `${server_host}:${server_port}`);
+
+};
+
+
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "mflow" is now active!');
+	console.log('Extension "mflow" is now active!');
 
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('mflow.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from MFlow!');
+	const disposable = vscode.commands.registerCommand('mflow.start-server', () => {
+
+		// Run MLFlow Server with provided settings
+		startMLFlowServer();
 	});
 
 	context.subscriptions.push(disposable);
