@@ -20,6 +20,7 @@ The following Visual Studio Code settings are available for the mflow extension.
 
 - `mflow.server_port`: Preferred port number for the server (default 5000).
 - `mflow.server_host`: The network address to listen on (default: 127.0.0.1 - localhost)
+- `mflow.conda_env`: The name of a conda environment where MLFlow is installed (default: base).
 - `mflow.artifact_uri`: Path to local directory to store artifacts, for new experiments.
 - `mflow.backend_uri`: URI to which to persist experiment and run data.
 
